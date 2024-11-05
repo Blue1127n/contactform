@@ -1,0 +1,126 @@
+.contact-form__content{
+    background: #fff;
+    max-width: 1512px;
+    max-height: 982px;
+}
+
+.contact-form__heading{
+    width: 1512px;
+    height: 40px;
+    color: rgba(139, 121, 105, 1);
+    font-family: Inika;
+    font-size: 35px;
+    font-weight: 400px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form{
+    width: 972px;
+    height: 606px;
+    color: rgba(139, 121, 105, 1);
+    padding: 5px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form__group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.form__group-title{
+    width: 300px;
+    text-align: left;
+}
+
+.form__group-content{
+    width: 600px;
+    text-align: left;
+}
+
+.form__label--required {
+    margin-left: 5px;
+    border-radius: 3px;
+    color: #ff0000;
+}
+
+.input-full.input-short{
+    padding-left: 15px;
+}
+
+.form__input--radio {
+    accent-color: rgba(139, 121, 105, 1);
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.form__input--radio label{
+    margin-right: 40px;
+    margin-left: 0px;
+}
+
+.form__input--text input[name="first_name"],
+.form__input--text input[name="last_name"]{
+    width: 260px;
+    height: 30px;
+    padding-left: 10px;
+    margin-right: 10px;
+}
+
+.input-full{
+    width: 550px;
+    height: 30px;
+    padding-left: 10px;
+}
+
+.input-short{
+    width: 168px;
+    height: 30px;
+}
+
+#phone-part1,#phone-part2,#phone-part3{
+    text-align: center;
+    margin: 0px 2px;
+    font-family: Inika;
+}
+
+.form__input--select select {
+    width: 300px;
+    height: 30px;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: rgba(139, 121, 105, 1);
+}
+
+.form__input--textarea textarea {
+    width: 550px;
+    height: 150px;
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    text-align: left;
+}
+
+.form__button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.form__button-submit {
+    padding: 10px;
+    width: 160PX;
+    height: 46px;
+    border: none;
+    border-radius: 3px;
+    background:rgba(139, 121, 105, 1);
+    color: #fff;
+    cursor: pointer;
+}

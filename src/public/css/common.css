@@ -1,0 +1,21 @@
+.header {
+    background: #fff;
+    max-width: 1512px;
+    height: 100px;
+}
+
+.header__inner {
+    width: 1512px;
+    height: 100px;
+    margin: 0 auto;
+    border-bottom:1px solid rgba(224, 223, 222, 1);
+    text-align: center;
+}
+
+.header__logo {
+    color: rgba(139, 121, 105, 1);
+    font-family: Inika;
+    font-size: 35px;
+    font-weight: 400px;
+    text-align: center;
+}
