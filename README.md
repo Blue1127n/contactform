@@ -41,4 +41,4 @@
  register.css
  login .css
  admain.css
-![image](https://github.com/user-attachments/assets/3f6b37e1-81e2-41c0-9500-9cae8cb65bfe)
+
