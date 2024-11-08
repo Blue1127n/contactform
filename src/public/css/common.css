@@ -1,15 +1,17 @@
 .header {
     background: #fff;
     max-width: 1512px;
-    height: 100px;
+    height: 99px;
 }
 
 .header__inner {
     width: 1512px;
     height: 100px;
-    margin: 0 auto;
     border-bottom:1px solid rgba(224, 223, 222, 1);
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .header__logo {
@@ -17,5 +19,22 @@
     font-family: Inika;
     font-size: 35px;
     font-weight: 400px;
-    text-align: center;
+    text-decoration: none;
 }
+
+.header__login-button {
+    color: rgba(139, 121, 105, 1);
+    width: 100px;
+    height: 34px;
+    font-family: Inika;
+    font-size: 16px;
+    text-decoration: none;
+    border: 1px solid rgba(217, 198, 181, 1);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 20px;
+    background-color: rgba(139, 121, 105, 0.05);
+}
+

@@ -2,6 +2,7 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/confirm.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
 @endsection
 
 @section('content')

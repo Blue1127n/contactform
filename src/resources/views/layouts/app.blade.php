@@ -14,7 +14,9 @@
 <body>
     <header class="header">
         <div class="header__inner">
-            <a class="header__logo" >FashionablyLate</a>
+            <a href="/" class="header__logo" >FashionablyLate</a>
+            @yield('showLoginButton')
+        </div>
     </header>
 
     <main>

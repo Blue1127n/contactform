@@ -1,0 +1,121 @@
+.body, html{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(241, 236, 231, 1);
+    ;
+}
+
+.header__register-button{
+    border: 1px solid rgba(217, 198, 181, 1);
+    width: 100px;
+    height: 34px;
+    top: 33px;
+    left: 1316px;
+    gap: 0px;
+    border: 1px 0px 0px 0px;
+    color: rgba(217, 198, 181, 1);
+    background-color: rgba(241, 236, 231, 1);
+    text-decoration: none;
+}
+
+.login__content{
+    background-color: rgba(241, 236, 231, 1);
+    max-width: 1512px;
+    max-height: 982px;
+    position: relative;
+}
+
+.login__heading{
+    width: 1512px;
+    height: 40px;
+    color: rgba(139, 121, 105, 1);
+    font-family: Inika;
+    font-size: 35px;
+    font-weight: 400px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    text-align: center;
+}
+
+.form{
+    width: 736px;
+    height: 644px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgba(139, 121, 105, 1);
+    background: rgba(255, 255, 255, 1);
+    margin-bottom: 74px;
+    margin-left: 388px;
+    position: relative;
+}
+
+.form__group {
+    text-align: center;
+    width: 445px;
+    height: 396px;
+    gap: 45px;
+    opacity: 0px;
+    background: rgba(255, 255, 255, 1);
+    text-align: left;
+    margin-bottom: 15px;
+    margin-left: 146px;
+    margin-top: 77px;
+}
+
+.form-group label {
+    gap: 0px;
+    font-size: 14px;
+    color: rgba(139, 121, 105, 1);
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form__group input[type="email"],
+.form__group input[type="password"] {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid rgba(139, 121, 105, 0.05);
+    background-color: rgba(139, 121, 105, 0.05);
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.form-group input[type="email"]::placeholder,
+.form-group input[type="password"]::placeholder {
+    color: rgba(139, 121, 105, 1);
+}
+
+.form__error {
+    height: 20px;
+    color: #ff0000;
+    margin-top: 5px;
+}
+
+.form__button {
+    margin-top: 20px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.form__button-submit {
+    padding: 10px 40px 10px 40px;
+    width: auto;
+    height: 46px;
+    gap: 10px;
+    opacity: 0px;
+    border: none;
+    background:rgba(139, 121, 105, 1);
+    color:  #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    margin-bottom: 70px;
+}
+
+
