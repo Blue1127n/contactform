@@ -10,7 +10,6 @@
     border-bottom:1px solid rgba(224, 223, 222, 1);
     display: flex;
     align-items: center;
-    justify-content: center;
     position: relative;
 }
 
@@ -20,6 +19,9 @@
     font-size: 35px;
     font-weight: 400px;
     text-decoration: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .header__login-button {

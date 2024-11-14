@@ -110,14 +110,19 @@ class ContactController extends Controller
                 'email' => '提供された資格情報は記録と一致しません',
             ])->withInput($request->only('email'));
         }
-}
-
+    }
         public function register(RegisterRequest $request)
 {
+            // $validatedData = $request->validate([
+            //     'name' => 'required|string|max:255',
+            //     'email' => 'required|email|max:255|unique:users,email',
+            //     'password' => 'required|string|max:255',
+            // ]);
+
             User::create([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'password' => Hash::make($request->input('password')),
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => Hash::make($validatedData['password']),
             ]);
 
             return redirect()->route('login')->with('success', '登録が完了しました');

@@ -95,6 +95,7 @@
     height: 20px;
     color: #ff0000;
     margin-top: 5px;
+    display: block;
 }
 
 .form__button {
