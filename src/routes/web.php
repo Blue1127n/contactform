@@ -23,6 +23,11 @@ Route::post('/contacts', [ContactController::class, 'store'])->name('contact.sto
 Route::get('/thanks', [ContactController::class, 'thanks'])->name('contact.thanks');
 Route::post('/process', [ContactController::class, 'process'])->name('contact.process');
 Route::get('/login', [ContactController::class, 'showLoginForm'])->name('login');
+Route::middleware(['auth'])->group(function () {
+Route::get('/admin', [ContactController::class, 'adminIndex'])->name('admin.index');
+Route::post('/admin/search', [ContactController::class, 'adminSearch'])->name('admin.search');
+});
+
 Route::get('/force-logout', function (Request $request) {
     Auth::logout();
     $request->session()->invalidate();

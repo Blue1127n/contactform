@@ -1,0 +1,166 @@
+.admin-content {
+    width: 85%;
+    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+    color: rgba(139, 121, 105, 1);
+}
+
+.admin-header {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.admin-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.admin-search form {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-search input,
+.admin-search select,
+.admin-search button {
+    padding: 8px 10px;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+.admin-search .btn-search,
+.admin-search .btn-reset {
+    width: 102.48px; /* 幅 */
+    height: 50px;    /* 高さ */
+    padding: 0;      /* 内側の余白をリセット */
+    font-size: 14px; /* テキストサイズ */
+    border-radius: 5px; /* ボタンの角を丸める */
+    border: 1px solid #ddd; /* ボーダー */
+    background-color: #f5f5f5; /* 背景色 */
+    cursor: pointer; /* ホバー時のカーソル */
+}
+
+.admin-search .btn {
+    background-color: #d2b48c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.admin-search .btn-search {
+    background-color: rgba(139, 121, 105, 1);
+}
+
+.admin-search .btn-reset{
+    background-color: rgba(217, 198, 181, 1);
+}
+
+.admin-search input[name="query"] {
+    width: 300px; /* 幅を300pxに設定 */
+    padding: 8px; /* 内側の余白を調整 */
+    font-size: 14px; /* フォントサイズを調整 */
+    border: 1px solid #ddd; /* ボーダーを設定 */
+}
+
+.admin-search .btn:hover {
+    background-color: #b08868;
+}
+
+.admin-actions {
+    display: flex;/* 横並びにする */
+    justify-content: space-between; /* 左右に要素を配置 */
+    align-items: center; /* 垂直方向の中央揃え */
+    margin-top: 20px; /* 検索フォームと間隔を空ける */
+    margin-bottom: 20px; /* 必要なら余白を追加 */
+}
+
+.admin-actions .btn-export {
+    background-color: rgba(225, 219, 214, 0.6);
+    color: rgba(139, 121, 105, 1);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.admin-actions .btn-export:hover {
+    background-color: rgba(225, 219, 214, 0.6)
+}
+
+.pagination {
+    display: flex; /* ulタグ内のliを横並びにする */
+    list-style: none; /* デフォルトのリストスタイルを削除 */
+    padding: 0;
+    margin: 0;
+}
+
+.pagination-container {
+    display: flex; /* ページネーションを横並びにする */
+    margin: 0; /* 余白のリセット */
+    padding: 0; /* パディングのリセット */
+    justify-content: flex-end; /* ページネーションを右端に配置 */
+    align-items: center; /* 縦の位置を中央に揃える */
+}
+
+.pagination li {
+    margin: 0 5px; /* 各ページリンクの間隔 */
+}
+
+.pagination a,
+.pagination span {
+    display: block;
+    text-decoration: none; /* リンクの下線を削除 */
+    padding: 10px 15px; /* リンクの内側の余白を調整 */
+    border: 1px solid #ddd; /* ボーダー設定 */
+    color: rgba(139, 121, 105, 1);
+}
+
+.pagination-container a:hover {
+    background-color: #f0f0f0; /* ホバー時の背景色 */
+}
+
+.admin-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.admin-table th,
+.admin-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.admin-table th {
+    background-color: rgba(139, 121, 105, 1);
+    color: white;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.admin-table .btn-detail {
+    background-color: #d2b48c;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-table .btn-detail:hover {
+    background-color: #b08868;
+}
+
+.admin-pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

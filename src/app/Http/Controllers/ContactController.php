@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class ContactController extends Controller
@@ -28,6 +29,7 @@ class ContactController extends Controller
         $request->session()->forget('contact');
     }
         $categories = Category::all();
+        Log::info('Categories retrieved', ['categories' => $categories->toArray()]); // カテゴリーデータをログ出力
         return view('index', compact('contact', 'categories'));
 }
 
@@ -126,6 +128,44 @@ class ContactController extends Controller
             ]);
 
             return redirect()->route('login')->with('success', '登録が完了しました');
+}
+        public function adminIndex(Request $request)
+{
+        // 初期表示用
+        Log::info('Admin Index Accessed'); // ログ追加
+        $contacts = Contact::paginate(7); // ページネーションで7件表示
+        $categories = Category::all(); // お問い合わせ種類
+
+        return view('admin', compact('contacts', 'categories'));
+}
+
+        public function adminSearch(Request $request)
+{
+        $query = Contact::query();
+
+    // 検索条件の適用
+    if ($request->filled('name')) {
+        $query->where('first_name', 'like', '%' . $request->name . '%')
+            ->orWhere('last_name', 'like', '%' . $request->name . '%');
+    }
+    if ($request->filled('email')) {
+        $query->where('email', 'like', '%' . $request->email . '%');
+    }
+    if ($request->filled('gender')) {
+        $query->where('gender', $request->gender);
+    }
+    if ($request->filled('category_id')) {
+        $query->where('category_id', $request->category_id);
+    }
+    if ($request->filled('date_from') && $request->filled('date_to')) {
+        $query->whereBetween('created_at', [$request->date_from, $request->date_to]);
+    }
+
+    // データ取得
+    $contacts = $query->paginate(7); // 検索結果をページネート
+    $categories = Category::all();
+
+    return view('admin', compact('contacts', 'categories'));
 }
 }
 
