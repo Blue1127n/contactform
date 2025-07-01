@@ -11,10 +11,12 @@
 </head>
 
 <body>
+<div class="container">
     <div class="thanks__content">
         <p class="thanks-message">Thank you</p>
         <p class="contact-message">お問い合わせありがとうございました</p>
         <a href="/" class="home-button">HOME</a>
     </div>
+</div>
 </body>
 </html>

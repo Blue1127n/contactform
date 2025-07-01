@@ -36,8 +36,8 @@ class CreateContactsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('contacts');
+        Schema::disableForeignKeyConstraints();//外部キー制約がある場合→ 外部キー制約があるとエラーになることがあるので、一時的に無効にしてから削除
+        Schema::dropIfExists('contacts');//テーブルを新規作成
         Schema::enableForeignKeyConstraints();
     }
 }

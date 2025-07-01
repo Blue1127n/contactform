@@ -1,7 +1,11 @@
+.container{
+    width: 100%;
+    max-width: 1512px;
+}
+
 .contact-form__content{
     background: #fff;
     max-width: 1512px;
-    max-height: 982px;
 }
 
 .contact-form__heading{
@@ -45,6 +49,22 @@
     margin-left: 5px;
     border-radius: 3px;
     color: #ff0000;
+}
+
+.form__input--text{
+    display: flex;
+    gap: 10px;
+}
+
+.name-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-input input {
+    width: 260px;
+    height: 30px;
+    padding-left: 10px;
 }
 
 .input-full.input-short{
@@ -116,6 +136,7 @@
 
 .form__button-submit {
     padding: 10px;
+    margin-bottom: 20px;
     width: 160PX;
     height: 46px;
     border: none;

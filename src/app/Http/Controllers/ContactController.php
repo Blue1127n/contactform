@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -97,37 +98,36 @@ class ContactController extends Controller
         return view('auth.login');
 }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
 {
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-        if (Auth::attempt($credentials)) {
+    $credentials = $request->only('email', 'password');
 
+    if (Auth::attempt($credentials)) {
         $request->session()->regenerate();
-            return redirect()->intended('/admin');
-
-            return back()->withErrors([
-                'email' => '提供された資格情報は記録と一致しません',
-            ])->withInput($request->only('email'));
-        }
+        return redirect()->intended('/admin');
     }
-        public function register(RegisterRequest $request)
+
+    return back()->withErrors([
+        'email' => '提供された資格情報は記録と一致しません',
+    ])->withInput($request->only('email'));
+}
+
+    public function showRegisterForm()
 {
-            // $validatedData = $request->validate([
-            //     'name' => 'required|string|max:255',
-            //     'email' => 'required|email|max:255|unique:users,email',
-            //     'password' => 'required|string|max:255',
-            // ]);
+    return view('auth.register');
+}
 
-            User::create([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => Hash::make($validatedData['password']),
-            ]);
+    public function register(RegisterRequest $request)
+{
+    $validatedData = $request->validated();
 
-            return redirect()->route('login')->with('success', '登録が完了しました');
+    User::create([
+        'name' => $validatedData['name'],
+        'email' => $validatedData['email'],
+        'password' => Hash::make($validatedData['password']),
+    ]);
+
+    return redirect()->route('login')->with('success', '登録が完了しました');
 }
         public function adminIndex(Request $request)
 {

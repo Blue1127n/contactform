@@ -15,6 +15,6 @@ class Category extends Model
 
     public function contacts()
     {
-        return $this->hasMany(Contact::class, 'category_id');
+        return $this->hasMany(Contact::class, 'category_id');//hasManyでContactと接続
     }
 }

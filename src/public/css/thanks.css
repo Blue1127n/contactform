@@ -1,6 +1,6 @@
-body {
+.container {
     width: 1512px;
-    height: 982px;
+    max-width: 100%;
     background: rgba(255, 255, 255, 1);
     font-family: Arial, sans-serif;
 }
@@ -10,7 +10,6 @@ body {
 }
 
 .thanks-message {
-    width: 1381px;
     height: 365px;
     top: 319px;
     left: 66px;
@@ -22,6 +21,11 @@ body {
     color: rgba(139, 121, 105, 0.05);
     background-color: #ffffff;
     padding: 0;
+    width: 100%; /* 画面いっぱいに */
+    white-space: nowrap; /* 改行させない */
+    overflow: hidden; /*その1行が枠（width）からはみ出しても、スクロールさせずにカットする*/
+    /*枠から文字がはみ出しても無理やり1行に押し込めて表示させることができます*/
+    text-align: center;
 }
 
 .contact-message {

@@ -12,15 +12,18 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="header__inner">
-            <a href="/" class="header__logo" >FashionablyLate</a>
-            @yield('showLoginButton')
-        </div>
-    </header>
+    <div class="container">
+        <header class="header">
+            <div class="header__inner">
+                <a href="/" class="header__logo" >FashionablyLate</a>
+                @yield('showLoginButton')
+            </div>
+        </header>
+    </div>
 
     <main>
         @yield('content')
     </main>
 </body>
+
 </html>

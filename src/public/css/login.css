@@ -1,4 +1,4 @@
-.body, html{
+.container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,28 +7,15 @@
     margin: 0px;
     padding: 0px;
     background-color: rgba(241, 236, 231, 1);
-    ;
-}
-
-.header__register-button{
-    border: 1px solid rgba(217, 198, 181, 1);
-    width: 100px;
-    height: 34px;
-    top: 33px;
-    left: 1316px;
-    gap: 0px;
-    border: 1px 0px 0px 0px;
-    color: rgba(217, 198, 181, 1);
-    background-color: rgba(241, 236, 231, 1);
-    text-decoration: none;
 }
 
 .login__content{
     background-color: rgba(241, 236, 231, 1);
+    width: 100%;
     max-width: 1512px;
-    max-height: 982px;
     position: relative;
 }
+
 
 .login__heading{
     width: 1512px;
@@ -44,7 +31,7 @@
 
 .form{
     width: 736px;
-    height: 644px;
+    height: 579px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,26 +46,29 @@
     text-align: center;
     width: 445px;
     height: 396px;
-    gap: 45px;
+    gap: 20px;
     opacity: 0px;
     background: rgba(255, 255, 255, 1);
     text-align: left;
-    margin-bottom: 15px;
-    margin-left: 146px;
-    margin-top: 77px;
+    margin-bottom: 5px;
+    margin-top: 70px;
 }
 
 .form-group label {
-    gap: 0px;
-    font-size: 14px;
     color: rgba(139, 121, 105, 1);
     margin-bottom: 5px;
     display: block;
+    font-family: Inika;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 100%;
+    letter-spacing: 0%;
 }
 
 .form__group input[type="email"],
 .form__group input[type="password"] {
-    width: 400px;
+    width: 445px;
+    height: 55px;
     padding: 10px;
     border: 1px solid rgba(139, 121, 105, 0.05);
     background-color: rgba(139, 121, 105, 0.05);
@@ -98,7 +88,7 @@
 }
 
 .form__button {
-    margin-top: 20px;
+    margin-top: 50px;
     align-items: center;
     display: flex;
     justify-content: center;

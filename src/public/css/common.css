@@ -1,3 +1,8 @@
+.container {
+    width: 100%;
+    max-width: 1512px;
+}
+
 .header {
     background: #fff;
     max-width: 1512px;
@@ -36,7 +41,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    right: 20px;
+    right: 100px;
     background-color: rgba(139, 121, 105, 0.05);
 }
 
+.header__register-button{
+    color: rgba(139, 121, 105, 1);
+    width: 100px;
+    height: 34px;
+    font-family: Inika;
+    font-size: 16px;
+    text-decoration: none;
+    border: 1px solid rgba(217, 198, 181, 1);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 100px;
+    background-color: rgba(139, 121, 105, 0.05);
+}
