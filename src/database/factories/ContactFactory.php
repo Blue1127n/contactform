@@ -19,12 +19,12 @@ class ContactFactory extends Factory
     {
         return [
             'category_id' => Category::inRandomOrder()->first()->id, // カテゴリIDをランダムに取得
-            'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
+            'first_name' => $this->faker->firstName,
             'gender' => rand(1, 3), // 男性(1), 女性(2), その他(3)
             'email' => $this->faker->unique()->safeEmail,
             'tel' => $this->faker->numerify('###-####-####'), // 電話番号のダミーデータ
-            'address' => $this->faker->address,
+            'address' => $this->faker->prefecture . $this->faker->city . $this->faker->streetAddress,
             'building' => $this->faker->secondaryAddress,
             'detail' => $this->faker->realText(100),
             'created_at' => now(),

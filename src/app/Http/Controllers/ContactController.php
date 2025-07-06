@@ -13,7 +13,8 @@ use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ContactController extends Controller
 {
@@ -119,10 +120,17 @@ class ContactController extends Controller
 
     public function register(RegisterRequest $request)
 {
+    // validated() を使ってバリデーション済みデータを取得
     $validatedData = $request->validated();
 
+    // 「姓 名」形式で入力された名前を分割 半角・全角スペースに対応
+    $parts = preg_split('/[\s　]+/', trim($request->name), 2);
+    $lastName = $parts[0] ?? '';
+    $firstName = $parts[1] ?? '';
+
     User::create([
-        'name' => $validatedData['name'],
+        'last_name' => $lastName,
+        'first_name' => $firstName,
         'email' => $validatedData['email'],
         'password' => Hash::make($validatedData['password']),
     ]);
@@ -143,13 +151,54 @@ class ContactController extends Controller
 {
         $query = Contact::query();
 
-    // 検索条件の適用
-    if ($request->filled('name')) {
-        $query->where('first_name', 'like', '%' . $request->name . '%')
-            ->orWhere('last_name', 'like', '%' . $request->name . '%');
-    }
-    if ($request->filled('email')) {
-        $query->where('email', 'like', '%' . $request->email . '%');
+        $search = $request->input('query');
+
+    // フルネーム・部分一致・メール検索
+        if ($request->filled('query')) {
+            $query->where(function ($q) use ($search) {
+                $q->whereRaw("CONCAT(last_name, first_name) LIKE ?", ["%{$search}%"])
+                    ->orWhere('last_name', 'like', "%{$search}%")
+                    ->orWhere('first_name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        if ($request->filled('gender')) {
+            $query->where('gender', $request->gender);
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        if ($request->filled('date')) {
+            $query->whereDate('created_at', $request->date);
+        }
+
+        $contacts = $query->paginate(7)->appends($request->all());
+        $categories = Category::all();
+
+    return view('admin', compact('contacts', 'categories'));
+}
+
+public function delete($id)
+{
+    Contact::findOrFail($id)->delete();
+    return redirect()->route('admin.search')->with('success', '削除しました');
+}
+
+public function export(Request $request)
+{
+    $query = Contact::with('category');
+
+    // 検索条件があれば追加
+    if ($request->filled('query')) {
+        $query->where(function ($q) use ($request) {
+            $q->where('last_name', 'like', '%' . $request->query . '%')
+              ->orWhere('first_name', 'like', '%' . $request->query . '%')
+              ->orWhereRaw("CONCAT(last_name, ' ', first_name) LIKE ?", ['%' . $request->query . '%'])
+              ->orWhere('email', 'like', '%' . $request->query . '%');
+        });
     }
     if ($request->filled('gender')) {
         $query->where('gender', $request->gender);
@@ -157,15 +206,59 @@ class ContactController extends Controller
     if ($request->filled('category_id')) {
         $query->where('category_id', $request->category_id);
     }
-    if ($request->filled('date_from') && $request->filled('date_to')) {
-        $query->whereBetween('created_at', [$request->date_from, $request->date_to]);
+    if ($request->filled('date')) {
+        $query->whereDate('created_at', $request->date);
     }
 
-    // データ取得
-    $contacts = $query->paginate(7); // 検索結果をページネート
-    $categories = Category::all();
+    $contacts = $query->get();
 
-    return view('admin', compact('contacts', 'categories'));
+    // CSV出力の準備
+    $csvFileName = 'contacts_' . date('Ymd_His') . '.csv';
+
+    $headers = [
+        'Content-Type' => 'text/csv',
+        'Content-Disposition' => "attachment; filename={$csvFileName}",
+    ];
+
+    $callback = function () use ($contacts) {
+        $handle = fopen('php://output', 'w');
+
+        // ヘッダー行
+        $header = ['お名前', '性別', 'メールアドレス', 'お問い合わせの種類', 'お問い合わせ内容', '日付'];
+        fputcsv($handle, array_map(function ($value) {
+            return mb_convert_encoding($value, 'SJIS-win', 'UTF-8');
+        }, $header));
+
+        // データ行
+        foreach ($contacts as $contact) {
+            $row = [
+                $contact->last_name . ' ' . $contact->first_name,
+                $contact->gender == 1 ? '男性' : ($contact->gender == 2 ? '女性' : 'その他'),
+                $contact->email,
+                $contact->category->content,
+                $contact->detail,
+                $contact->created_at->format('Y-m-d'),
+            ];
+
+            fputcsv($handle, array_map(function ($value) {
+                return mb_convert_encoding($value, 'SJIS-win', 'UTF-8');
+            }, $row));
+        }
+
+        fclose($handle);
+    };
+
+    return response()->stream($callback, 200, $headers);
+}
+
+public function logout(Request $request)
+{
+    Auth::logout(); // ログイン状態を解除（認証情報を削除）
+
+    $request->session()->invalidate(); // セッションを完全に削除してリセット
+    $request->session()->regenerateToken(); // セキュリティ的に新しいCSRFトークンを発行
+
+    return redirect()->route('login'); // ログイン画面へリダイレクト
 }
 }
 
